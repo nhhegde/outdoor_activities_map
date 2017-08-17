@@ -3,10 +3,8 @@
 var google;
 var ko;
 var console;
-// var $;
 var alert;
 var distance_func = google.maps.geometry.spherical.computeDistanceBetween;
-// console.log(distance_func({lat: place['lat'], lng: place['lon']}, {lat: centerLat(), lng: centerLon()}))
 
 
 function AppViewModelDef() {
@@ -21,17 +19,12 @@ function AppViewModelDef() {
                 var p = places();
                 var q = p.filter(function (place) {
                     var centerCoor = new google.maps.LatLng(parseFloat(centerLat()), parseFloat(centerLon()));
-                    // console.log(centerCoor);
                     var placeCoor = new google.maps.LatLng(parseFloat(place.lat), parseFloat(place.lon));
-                    // console.log(place.lat);
 
                     //convert meters to miles
                     var dist = 0.000621371 * distance_func(centerCoor, placeCoor);
-                    // console.log(dist);
                     return maxDistance() >= dist;
                 });
-                console.log('q:');
-                console.log(q);
                 return q;
             };
 
@@ -73,24 +66,19 @@ function updatePlaces(lat, lon, radius, maxNumTrails) {
             datatype: 'json',
 
             success: function () {
-                console.log('Ajax success');
+                // console.log('Ajax success');
                 var places = arguments[0].places.map(function(place) {
                     place.marker = null;
                     place.current = AppViewModel.currentPlace;
                     return place;
                 });
 
-                // console.log('places: ', places);
-                // self.removeAllActivities();
                 AppViewModel.places(places);
             },
             error: function () {
                 console.log('Ajax Error');
                 // console.log(arguments);
                 alert('Sorry, could not access the trails-api');
-                // console.log(textStatus);
-                // console.log(errorThrown);
-                // console.log(jqXHR)
             },
             beforeSend: function (xhr) {
                 xhr.setRequestHeader("X-Mashape-Key", "PlbWQer6JkmshNDg1SKfp9sYYbHUp1JmM0ojsn2VR4UR2K39Iz");
@@ -118,36 +106,8 @@ function initMap() {
         clearMarkers();
         for(var i = 0; i < filteredPlaces.length; i++) {
             var place = filteredPlaces[i];
-//                console.log('pushing');
-//             var marker = new google.maps.Marker({
-//
-//                 position: {
-//                     lat: place.lat,
-//                     lng: place.lon
-//                 },
-//                 map: map,
-//                 title: place.name
-//             });
-// //                console.log(marker);
-//             markers.push(marker);
-// //                markLink = '<a href="' + place['activities'][0]['url'] + '">url</a>';
-//             var markName = '<h1>' + marker.title + '</h1>';
-//             var markCoor = '<p> (lat, lon):  ' + place.lat + ', ' + place.lon + '</p>';
-//             attachInfoWindow(marker, markName + '\n' + markCoor, place);
-//             place.marker = marker;
             createAttachMarker(place);
-//                mark.infoWindow = new google.maps.InfoWindow({
-//                    content:    '<div id="content">' +
-//                    markName +
-//                    markCoor +
-//                    '</div>'
-//                });
-//                mark.addListener('click', function() {
-//                    mark.infoWindow.open(map, mark)
-//                })
         }
-        // console.log(markers);
-        // console.log('subscribed!');
     });
 
 }
@@ -197,7 +157,6 @@ function attachInfoWindow(place, marker, contentString ) {
     marker.infowindow = infowindow;
     place.marker = marker;
     marker.addListener('click', function() {
-        // infowindow.open(marker.get('map'), marker);
         showPlaceInfoWindow(place);
     });
 }
