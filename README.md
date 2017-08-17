@@ -3,7 +3,9 @@ Displays the location and name of outdoor hiking/camping/etc. locations near you
 
 ## Description
 This application displays a map of outdoor activity locations on a google map. This application displays
-up to 25 outdoor activity locations around the given gps coordinate within the inputted radius.
+up to 25 outdoor activity locations around the given gps coordinate within the inputted radius.  
+
+This application was built using responsive design principles and is usable on mobile, tablet, and smaller monitors. 
 
 ## Requirements
 
