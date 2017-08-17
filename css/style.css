@@ -4,25 +4,23 @@ body {
     background-color: #d1e8ff;
 }
 
-.btn {
-  text-decoration: none;
-  color: #fff;
+button {
   background-color: #55c403;
+  color: #ffffff;
   text-align: center;
   cursor: pointer;
-  outline: 0;
   border: none;
   border-radius: 2px;
   padding: 0 2rem;
   margin: 0 0.1rem;
 }
 
-.btn:hover, .btn-large:hover {
-  background-color: #2bbbad;
+button:hover {
+  background-color: #65ef00;
 }
 
-.btn:active {
-    background-color: #1d7d74;
+button:active {
+    background-color: #388400;
 }
 
 header {
