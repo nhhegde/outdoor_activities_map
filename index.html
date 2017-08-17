@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="css/style.css">
+    <title>Outdoor Places Nearby</title>
+    <!-- Scripts loaded at the bottom -->
+
+</head>
+<body>
+<header>
+    <h1>Outdoor Places Nearby</h1>
+</header>
+<div>
+    <main>
+        <section class="inp">
+            <input id="lat" placeholder="latitude" data-bind="numeric, value: lat">
+            <input id="lon" placeholder="longitude" data-bind="numeric, value: lon">
+            <input id="radius" placeholder="radius(mi)" data-bind="numeric, value: radius">
+            <button id="newPlaces" data-bind="click: updatePlaces()" class="btn">Find new Places</button>
+            <button id=filter class="btn">Filter by Distance (mi)</button>
+        </section>
+        <section class="app">
+            <aside>
+                <!-- knockout for loop here for displaying li's -->
+                <ul class="list" data-bind="foreach: filteredPlaces">
+                    <li data-bind="text: name, click: showPlaceInfoWindow, css: { 'active': current().name == name}" class="list-item">
+
+                    </li>
+                </ul>
+            </aside>
+            <section id="map" class="map"></section>
+        </section>
+
+    </main>
+
+
+
+</div>
+
+
+<script src="js/libs/jquery-3.2.1.min.js" ></script>
+<script src="js/libs/knockout-3.4.2.js" ></script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNx8Y4IuT2LQzMUA01RkHrArtHjN2SruQ&libraries=geometry" onerror="onGMapsError()" defer></script>
+
+<script src="js/app.js" defer></script>
+
+</body>
+</html>
